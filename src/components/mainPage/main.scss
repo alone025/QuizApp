@@ -1,0 +1,195 @@
+.MainPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  .log-text {
+    h2 {
+      color: #fff;
+      text-align: center;
+      font-family: var(--Inter);
+      font-size: 45px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin: 0;
+      padding-top: 54px;
+      transition: 0.3s;
+    }
+  }
+  .content-bottom {
+    border-radius: 25px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 800px;
+    padding: 50px;
+    z-index: 1;
+    transition: 0.3s;
+    .select-section {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 30px;
+      transition: 0.3s;
+      h2 {
+        color: rgba(0, 0, 0, 0.65);
+        text-align: left;
+        font-family: var(--Padauk);
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+      }
+      li,
+      em {
+        color: rgba(0, 0, 0, 0.85);
+        text-align: center;
+        font-family: var(--Padauk);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    .btn-dv {
+      margin-top: 100px;
+      width: 300px;
+      transition: 0.3s;
+      button {
+        height: 60px;
+        border-radius: 10px;
+        background: #88e68b;
+        box-shadow: 0px 10px 4px 0px #cfc;
+        color: #fff;
+        text-align: center;
+        font-family: var(--PalanquiDark);
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+// Media section
+
+@media screen and (max-width: 965px) {
+  .MainPage {
+    .log-text {
+      h2 {
+        font-size: 40px;
+        transition: 0.3s;
+      }
+    }
+    .content-bottom {
+      transition: 0.3s;
+      width: 600px;
+    }
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .MainPage {
+    .log-text {
+      h2 {
+        font-size: 40px;
+        transition: 0.3s;
+      }
+    }
+    .content-bottom {
+      transition: 0.3s;
+      width: 80%;
+      .btn-dv {
+        margin-top: 50px;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .MainPage {
+    .log-text {
+      h2 {
+        font-size: 35px;
+        transition: 0.3s;
+      }
+    }
+    .content-bottom {
+      transition: 0.3s;
+      width: 75%;
+      .btn-dv {
+        margin-top: 50px;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .MainPage {
+    .log-text {
+      h2 {
+        font-size: 30px;
+        transition: 0.3s;
+      }
+    }
+    .content-bottom {
+      transition: 0.3s;
+      width: 70%;
+      padding: 40px;
+      .select-section {
+        h2 {
+          font-size: 25px;
+        }
+      }
+      .btn-dv {
+        margin-top: 50px;
+        transition: 0.3s;
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .MainPage {
+    .log-text {
+      h2 {
+        font-size: 25px;
+        transition: 0.3s;
+      }
+    }
+    .content-bottom {
+      width: 90%;
+      padding: 28px 10px;
+      margin-top: 25px;
+      transition: 0.3s;
+      .btn-dv {
+        width: 215px;
+        transition: 0.3s;
+        button {
+          height: 50px;
+          font-size: 17px;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+// Media in height =====================
+
+@media screen and (max-height: 860px) {
+  .MainPage {
+    height: auto;
+    padding-bottom: 30px;
+    transition: 0.3s;
+  }
+}

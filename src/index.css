@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Oxygen&family=Padauk:wght@400;700&family=Palanquin+Dark&family=Palanquin:wght@400;500;600&display=swap");
+
+:root {
+  --Inter: "Inter", sans-serif;
+  --Padauk: "Padauk", sans-serif;
+  --Palanqui: "Palanquin", sans-serif;
+  --PalanquiDark: "Palanquin Dark", sans-serif;
+  --Oxygen: "Oxygen", sans-serif;
+}
+
+body {
+  background: #833cf6;
+}
+
+#root {
+  background: #833cf6;
+}
+#root::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 240px;
+  background: url("./assets/Group9.png");
+  background-repeat: no-repeat;
+}
+#root::after {
+  content: "";
+  position: fixed;
+  bottom: 0 !important;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: url("./assets/group18.svg");
+  background-repeat: no-repeat;
+}
+
+body {
+  margin: 0;
+}

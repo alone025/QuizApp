@@ -1,0 +1,304 @@
+.QuizPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 11;
+  height: 100vh;
+  .topBar {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+    margin-top: 55px;
+    transition: 0.3s;
+    .backIcon {
+      border-radius: 10px;
+      background: rgba(235, 255, 235, 0.5);
+      padding: 15px;
+      transition: 0.3s;
+    }
+    .listTab {
+      p {
+        color: #fff;
+        text-align: center;
+        font-family: var(--PalanquiDark);
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    .timeTab {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-align: center;
+      font-family: var(--Oxygen);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      padding: 15px 11px 15px 16px;
+      border-radius: 10px;
+      background: #461597;
+      transition: 0.3s;
+    }
+  }
+  .bottomBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 50px;
+    width: 75%;
+    position: relative;
+    transition: 0.3s;
+    z-index: 11;
+
+    .imh3 {
+      position: absolute;
+      left: -45px;
+    }
+    .imh4 {
+      position: absolute;
+      bottom: -20px;
+      left: -35px;
+    }
+    .imh1 {
+      position: absolute;
+      right: -25px;
+    }
+    .imh2 {
+      position: absolute;
+      right: -20px;
+      bottom: -20px;
+    }
+    .quiz-text {
+      transition: 0.3s;
+      h2 {
+        color: #000;
+        text-align: center;
+        font-family: var(--Padauk);
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: 0.3s;
+      }
+    }
+    .content-quiz {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: 0.3s;
+      .answer-section {
+        display: flex;
+        flex-direction: column;
+        gap: 37px;
+        width: 80%;
+        transition: 0.3s;
+        input {
+          color: #000;
+          text-align: left;
+          font-family: var(--Palanqui);
+          font-size: 25px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+          cursor: pointer;
+        }
+      }
+      .btn-div {
+        margin-top: 89px;
+        transition: 0.3s;
+        width: 50%;
+        button {
+          border-radius: 10px;
+          background: #88e68b;
+          box-shadow: 0px 10px 4px 0px #cfc;
+          color: #fff;
+          text-align: center;
+          font-family: var(--PalanquiDark);
+          font-size: 30px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+// Media section
+
+@media screen and (max-width: 1310px) {
+  .QuizPage {
+    .bottomBar {
+      .content-quiz {
+        width: 100%;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 840px) and (max-height: 1000px) {
+//   .QuizPage {
+//     height: auto;
+//     padding-bottom: 30px;
+//     transition: 0.3s;
+//   }
+// }
+
+@media screen and (max-width: 600px) {
+  .QuizPage {
+    .topBar {
+      margin-top: 20px;
+      transition: 0.3s;
+      .timeTab {
+        padding: 10px 10px 10px 10px;
+        transition: 0.3s;
+      }
+      .backIcon {
+        padding: 10px;
+        transition: 0.3s;
+      }
+    }
+    .bottomBar {
+      padding: 40px 30px;
+      transition: 0.3s;
+      .quiz-text h2 {
+        font-size: 28px;
+        transition: 0.3s;
+      }
+      .content-quiz {
+        .answer-section {
+          width: 100%;
+          transition: 0.3s;
+        }
+        .btn-div {
+          button {
+            font-size: 23px;
+            transition: 0.3s;
+          }
+        }
+      }
+      .imh1 {
+        width: 55px;
+      }
+      .imh2 {
+        right: -10px;
+        bottom: 10px;
+        width: 55px;
+      }
+      .imh3 {
+        left: -25px;
+        width: 60px;
+      }
+      .imh4 {
+        width: 60px;
+        bottom: 10px;
+        left: -25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .QuizPage {
+    .topBar {
+      width: 90%;
+      transition: 0.3s;
+      .backIcon {
+        padding: 8px;
+        transition: 0.3s;
+        img {
+          width: 22px;
+          transition: 0.3s;
+        }
+      }
+      .listTab {
+        p {
+          font-size: 25px;
+          transition: 0.3s;
+        }
+      }
+      .timeTab {
+        font-size: 15px;
+        transition: 0.3s;
+        img {
+          width: 22px;
+          transition: 0.3s;
+        }
+      }
+    }
+    .bottomBar {
+      padding: 20px 25px;
+      width: 80%;
+      transition: 0.3s;
+      .content-quiz {
+        .answer-section {
+          input {
+            font-size: 20px;
+            padding: 11px;
+            transition: 0.3s;
+          }
+          img {
+            width: 25px;
+            transition: 0.3s;
+          }
+        }
+        .btn-div {
+          margin-top: 70px;
+          transition: 0.3s;
+          button {
+            font-size: 18px;
+            transition: 0.3s;
+          }
+        }
+      }
+      .quiz-text {
+        h2 {
+          font-size: 24px;
+          transition: 0.3s;
+        }
+      }
+      .imh1 {
+        display: none;
+      }
+      .imh2 {
+        display: none;
+      }
+      .imh3 {
+        display: none;
+      }
+      .imh4 {
+        display: none;
+      }
+    }
+  }
+}
+
+// Media in height
+
+@media screen and (max-height: 900px) {
+  .QuizPage {
+    height: auto;
+    padding-bottom: 30px;
+    transition: 0.3s;
+  }
+}
+
+@media screen and (max-height: 872px) and (max-width: 434px) {
+  .QuizPage {
+    height: 100vh;
+    padding-bottom: 30px;
+    transition: 0.3s;
+  }
+}

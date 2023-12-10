@@ -11,27 +11,29 @@ import book from "../../assets/book 1.png";
 import pen from "../../assets/pen 1.png";
 import "./quiz.scss";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Result from "../total/total";
+import InputLabel from "@mui/material/InputLabel";
+import CircularProgress from "@mui/material/CircularProgress";
 
-const options = [
-  {
-    id: 1,
-    text: "Alisher Navoiy",
-    visible: true,
-  },
-  {
-    id: 2,
-    text: "Chingisxon",
-    visible: false,
-  },
-  {
-    id: 3,
-    text: "Amir Temur",
-    visible: false,
-  },
-];
-
-const QuizPage = ({ tem, nump, asnw }) => {
-  const [time, setTime] = useState(tem); // 40 minutes in seconds
+const QuizPage = ({ data }) => {
+  const tm =
+    data.numberOfQuestions == 5
+      ? 300
+      : data.numberOfQuestions == 10
+      ? 600
+      : data.numberOfQuestions == 15
+      ? 900
+      : 700;
+  const [time, setTime] = useState(tm);
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [accert, setAccert] = useState(false);
+  const [show, setShow] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [userAnswers, setUserAnswers] = useState(0);
+  const [have, setHave] = useState(true);
+  const [start, setStart] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,6 +43,10 @@ const QuizPage = ({ tem, nump, asnw }) => {
         clearInterval(timer);
       }
     }, 1000);
+
+    if (time == 0) {
+      setFinished(true);
+    }
 
     return () => clearInterval(timer);
   }, [time]);
@@ -58,87 +64,210 @@ const QuizPage = ({ tem, nump, asnw }) => {
     window.location.href = "/";
   };
 
+  const fetchQuestions = async () => {
+    console.log(data);
+    try {
+      const response = await axios.get("https://opentdb.com/api.php", {
+        params: {
+          amount: data.numberOfQuestions,
+          category: data.category,
+          difficulty: data.difficulty,
+          type: data.type,
+          encoding: data.encoding,
+        },
+      });
+      const fetchedQuestions = response.data.results;
+
+      if (fetchedQuestions.length > 0) {
+        setQuestions(fetchedQuestions);
+        console.log("Savollar", fetchedQuestions);
+        setAccert(true);
+      } else {
+        console.error("No questions fetched from the API.");
+        setHave(false);
+      }
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+      fetchQuestions();
+    }
+  };
+
+  const nextQuestion = () => {
+    setTimeout(() => {
+      const nextIndex = currentIndex + 1;
+      if (nextIndex < questions.length) {
+        setCurrentIndex(nextIndex);
+        setShow(false);
+      } else {
+        console.log("Tugadi");
+        setFinished(true);
+      }
+    }, 1000);
+  };
+
+  const shuffleAnswers = (answers) => {
+    return answers.sort(() => Math.random() - 0.1);
+  };
+
   return (
-    <div className="container QuizPage">
-      <div className="topBar">
-        <Button
-          style={{
-            background: "transparent",
-            border: "none",
-            lineHeight: "0",
-            borderRadius: "10px",
-          }}
-          onClick={() => {
-            backnavigate();
-          }}
-        >
-          <div className="backIcon">
-            <img src={back} alt="" />
-          </div>
-        </Button>
-        <div className="listTab">
-          <p>01 of {nump}</p>
-        </div>
-        <div className="timeTab">
-          <img src={clock} alt="" />
-          {formatTime(time)}
-        </div>
-      </div>
-      <div className="bottomBar">
-        {/*  */}
-
-        <img src={book} alt="" className="imh3" />
-        <img src={pen} alt="" className="imh4" />
-        <img src={ruler} alt="" className="imh1" />
-        <img src={pencil} alt="" className="imh2" />
-
-        {/*  */}
-        <div className="quiz-text">
-          <h2>
-            Who is the most powerful general in the world? And where is he or
-            she live.
-            {/* {asnw} */}
-          </h2>
-        </div>
-        <div className="content-quiz">
-          <div className="answer-section">
-            {options.map((options) => (
-              <>
-                <TextField
-                  key={options.id}
-                  id="outlined-read-only-input"
-                  defaultValue={options.text}
-                  onClick={() => {
-                    console.log(options.text);
-                  }}
-                  InputProps={{
-                    readOnly: true,
-                    endAdornment: options.visible ? (
-                      <img src={acc} />
-                    ) : (
-                      <img
-                        src={err}
-                        style={{ background: "#fff", borderRadius: "20px" }}
-                      />
-                    ),
-                  }}
-                  sx={{
-                    backgroundColor: options.visible ? "#DBFFDC" : "#E94D4D80",
-                    borderRadius: "10px",
-                    border: "2px solid rgba(0, 0, 0, 0.25)",
-                  }}
-                />
-              </>
-            ))}
-          </div>
-          <div className="btn-div">
-            <Button variant="contained" fullWidth>
-              Keyingisi
+    <>
+      {!finished ? (
+        <div className="container QuizPage">
+          <div className="topBar">
+            <Button
+              style={{
+                background: "transparent",
+                border: "none",
+                lineHeight: "0",
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                backnavigate();
+              }}
+            >
+              <div className="backIcon">
+                <img src={back} alt="" />
+              </div>
             </Button>
+            <div className="listTab">
+              <p>
+                {currentIndex + 1} of {data.numberOfQuestions}
+              </p>
+            </div>
+            <div className="timeTab">
+              <img src={clock} alt="" />
+              {accert ? <>{formatTime(time)}</> : "00:00"}
+            </div>
           </div>
+          {have ? (
+            <>
+              {accert ? (
+                <div className="bottomBar">
+                  {/*  */}
+
+                  <img src={book} alt="" className="imh3" />
+                  <img src={pen} alt="" className="imh4" />
+                  <img src={ruler} alt="" className="imh1" />
+                  <img src={pencil} alt="" className="imh2" />
+
+                  {/*  */}
+                  <div className="quiz-text">
+                    <h2>
+                      {questions[currentIndex].question || <h2>Hello</h2>}
+                    </h2>
+                  </div>
+                  <div className="content-quiz">
+                    <div className="answer-section">
+                      {shuffleAnswers(
+                        questions[currentIndex].incorrect_answers
+                      ).map((options) => (
+                        <>
+                          <TextField
+                            key={options}
+                            id="outlined-read-only-input"
+                            defaultValue={options}
+                            onClick={() => {
+                              console.log(options);
+                              setShow(true);
+                              nextQuestion();
+                            }}
+                            InputProps={{
+                              readOnly: true,
+                              endAdornment: show ? (
+                                <img
+                                  src={err}
+                                  style={{
+                                    background: "#fff",
+                                    borderRadius: "20px",
+                                  }}
+                                />
+                              ) : (
+                                <></>
+                              ),
+                            }}
+                            sx={{
+                              backgroundColor: show ? "#E94D4D80" : "#fff",
+                              borderRadius: "10px",
+                              border: "2px solid rgba(0, 0, 0, 0.25)",
+                            }}
+                          />
+                        </>
+                      ))}
+                      <TextField
+                        key={questions[currentIndex].correct_answer}
+                        id="outlined-read-only-input"
+                        defaultValue={questions[currentIndex].correct_answer}
+                        onClick={() => {
+                          console.log(questions[currentIndex].correct_answer);
+                          setUserAnswers(userAnswers + 1);
+                          setShow(true);
+                          nextQuestion();
+                        }}
+                        InputProps={{
+                          readOnly: true,
+                          endAdornment: show ? <img src={acc} /> : <></>,
+                        }}
+                        sx={{
+                          backgroundColor: show ? "#DBFFDC" : "#fff",
+                          borderRadius: "10px",
+                          border: "2px solid rgba(0, 0, 0, 0.25)",
+                        }}
+                      />
+                    </div>
+                    <div className="btn-div">
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        onClick={() => {
+                          setShow(true);
+                          nextQuestion();
+                        }}
+                      >
+                        Keyingisi
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {start ? (
+                    <CircularProgress color="inherit" />
+                  ) : (
+                    <>
+                      <InputLabel sx={{ fontSize: "28px", color: "#fff" }}>
+                        Are you ready?
+                      </InputLabel>
+                      <Button
+                        variant="contained"
+                        sx={{
+                          marginTop: "15px",
+                          padding: "10px 20px",
+                          borderRadius: "10px",
+                        }}
+                        onClick={() => {
+                          fetchQuestions();
+                          setStart(true);
+                        }}
+                      >
+                        Start test
+                      </Button>
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <InputLabel sx={{ fontSize: "28px", color: "#fff" }}>
+                Unfortunately, there are no questions in this category.
+              </InputLabel>
+            </>
+          )}
         </div>
-      </div>
-    </div>
+      ) : (
+        <Result data={data.numberOfQuestions} answers={userAnswers} />
+      )}
+    </>
   );
 };
 

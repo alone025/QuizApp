@@ -45,7 +45,7 @@ const imgs = [
   },
 ];
 
-const Result = () => {
+const Result = ({ data, answers }) => {
   const homeNavigate = () => {
     window.location.href = "/";
   };
@@ -54,11 +54,22 @@ const Result = () => {
     <div className="container TotalPage">
       <div className="contentPage">
         <div className="logo-img">
-          <img src={Kubik} alt="" />
+          {data - answers > answers ? "" : <img src={Kubik} alt="" />}
         </div>
         <div className="resLogo">
-          <h2>Congretulation</h2>
-          <p>Congretulation you are good at History.Yo can take exam</p>
+          {data - answers > answers ? (
+            <h2>Bad result</h2>
+          ) : (
+            <h2>Congretulation</h2>
+          )}
+          {data - answers > answers ? (
+            <p>Unfortunately, your results are very low. Try again</p>
+          ) : (
+            <p>
+              Congratulations. You have successfully passed the tests. Dont stop
+              learning
+            </p>
+          )}
         </div>
         <div className="resultQuiz">
           <p>
@@ -66,21 +77,28 @@ const Result = () => {
               <img src={alChiroq} alt="" />
               Total question
             </span>
-            <span>10</span>
+            <span>{data}</span>
           </p>
           <p>
             <span>
               <img src={trues} alt="" />
               Correct answear
             </span>
-            <span>08</span>
+            <span>
+              {" "}
+              {answers < 10 ? 0 : ""}
+              {answers}
+            </span>
           </p>
           <p>
             <span>
               <img src={falses} alt="" />
               Incorrect answear
             </span>
-            <span>02</span>
+            <span>
+              {data - answers < 10 ? 0 : ""}
+              {data - answers}
+            </span>
           </p>
         </div>
         <div className="btn-div">
@@ -91,17 +109,23 @@ const Result = () => {
               homeNavigate();
             }}
           >
-            Yakunlash
+            Finish Test
           </Button>
         </div>
-        {imgs.map((image) => (
-          <img
-            key={image.id}
-            src={image.img}
-            className={image.name}
-            id={image.ids}
-          />
-        ))}
+        {data - answers > answers ? (
+          <div className=""></div>
+        ) : (
+          <>
+            {imgs.map((image) => (
+              <img
+                key={image.id}
+                src={image.img}
+                className={image.name}
+                id={image.ids}
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

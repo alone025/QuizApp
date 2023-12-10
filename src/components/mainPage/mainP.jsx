@@ -120,7 +120,12 @@ const MainP = () => {
   };
 
   const handleStartQuiz = async () => {
-    if (!formData.category || !formData.difficulty || !formData.type) {
+    if (
+      !formData.category ||
+      !formData.difficulty ||
+      !formData.type ||
+      !formData.numberOfQuestions
+    ) {
       setSnack(true);
       return;
     }

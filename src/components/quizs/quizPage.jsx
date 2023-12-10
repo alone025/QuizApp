@@ -99,14 +99,9 @@ const QuizPage = ({ data }) => {
         setCurrentIndex(nextIndex);
         setShow(false);
       } else {
-        console.log("Tugadi");
         setFinished(true);
       }
     }, 1000);
-  };
-
-  const shuffleAnswers = (answers) => {
-    return answers.sort(() => Math.random() - 0.1);
   };
 
   return (
@@ -158,47 +153,45 @@ const QuizPage = ({ data }) => {
                   </div>
                   <div className="content-quiz">
                     <div className="answer-section">
-                      {shuffleAnswers(
-                        questions[currentIndex].incorrect_answers
-                      ).map((options) => (
-                        <>
-                          <TextField
-                            key={options}
-                            id="outlined-read-only-input"
-                            defaultValue={options}
-                            onClick={() => {
-                              console.log(options);
-                              setShow(true);
-                              nextQuestion();
-                            }}
-                            InputProps={{
-                              readOnly: true,
-                              endAdornment: show ? (
-                                <img
-                                  src={err}
-                                  style={{
-                                    background: "#fff",
-                                    borderRadius: "20px",
-                                  }}
-                                />
-                              ) : (
-                                <></>
-                              ),
-                            }}
-                            sx={{
-                              backgroundColor: show ? "#E94D4D80" : "#fff",
-                              borderRadius: "10px",
-                              border: "2px solid rgba(0, 0, 0, 0.25)",
-                            }}
-                          />
-                        </>
-                      ))}
+                      {questions[currentIndex].incorrect_answers.map(
+                        (options) => (
+                          <>
+                            <TextField
+                              key={options}
+                              id="outlined-read-only-input"
+                              defaultValue={options}
+                              onClick={() => {
+                                setShow(true);
+                                nextQuestion();
+                              }}
+                              InputProps={{
+                                readOnly: true,
+                                endAdornment: show ? (
+                                  <img
+                                    src={err}
+                                    style={{
+                                      background: "#fff",
+                                      borderRadius: "20px",
+                                    }}
+                                  />
+                                ) : (
+                                  <></>
+                                ),
+                              }}
+                              sx={{
+                                backgroundColor: show ? "#E94D4D80" : "#fff",
+                                borderRadius: "10px",
+                                border: "2px solid rgba(0, 0, 0, 0.25)",
+                              }}
+                            />
+                          </>
+                        )
+                      )}
                       <TextField
                         key={questions[currentIndex].correct_answer}
                         id="outlined-read-only-input"
                         defaultValue={questions[currentIndex].correct_answer}
                         onClick={() => {
-                          console.log(questions[currentIndex].correct_answer);
                           setUserAnswers(userAnswers + 1);
                           setShow(true);
                           nextQuestion();

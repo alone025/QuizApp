@@ -183,13 +183,3 @@
     }
   }
 }
-
-// Media in height =====================
-
-@media screen and (max-height: 860px) {
-  .MainPage {
-    height: auto;
-    padding-bottom: 30px;
-    transition: 0.3s;
-  }
-}

@@ -16,6 +16,13 @@ import Result from "../total/total";
 import InputLabel from "@mui/material/InputLabel";
 import CircularProgress from "@mui/material/CircularProgress";
 
+export const shuffle = (arr) => {
+  return arr
+    .map((item) => [Math.random(), item])
+    .sort()
+    .map((item) => item[1]);
+};
+
 const QuizPage = ({ data }) => {
   const tm =
     data.numberOfQuestions == 5
@@ -34,6 +41,7 @@ const QuizPage = ({ data }) => {
   const [userAnswers, setUserAnswers] = useState(0);
   const [have, setHave] = useState(true);
   const [start, setStart] = useState(false);
+  const [sas, setSas] = useState([]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -82,6 +90,8 @@ const QuizPage = ({ data }) => {
         setQuestions(fetchedQuestions);
         console.log("Savollar", fetchedQuestions);
         setAccert(true);
+        setSas(fetchedQuestions[0].incorrect_answers);
+        console.log(sas);
       } else {
         console.error("No questions fetched from the API.");
         setHave(false);
@@ -155,36 +165,34 @@ const QuizPage = ({ data }) => {
                     <div className="answer-section">
                       {questions[currentIndex].incorrect_answers.map(
                         (options) => (
-                          <>
-                            <TextField
-                              key={options}
-                              id="outlined-read-only-input"
-                              defaultValue={options}
-                              onClick={() => {
-                                setShow(true);
-                                nextQuestion();
-                              }}
-                              InputProps={{
-                                readOnly: true,
-                                endAdornment: show ? (
-                                  <img
-                                    src={err}
-                                    style={{
-                                      background: "#fff",
-                                      borderRadius: "20px",
-                                    }}
-                                  />
-                                ) : (
-                                  <></>
-                                ),
-                              }}
-                              sx={{
-                                backgroundColor: show ? "#E94D4D80" : "#fff",
-                                borderRadius: "10px",
-                                border: "2px solid rgba(0, 0, 0, 0.25)",
-                              }}
-                            />
-                          </>
+                          <TextField
+                            key={options}
+                            id="outlined-read-only-input"
+                            defaultValue={options}
+                            onClick={() => {
+                              setShow(true);
+                              nextQuestion();
+                            }}
+                            InputProps={{
+                              readOnly: true,
+                              endAdornment: show ? (
+                                <img
+                                  src={err}
+                                  style={{
+                                    background: "#fff",
+                                    borderRadius: "20px",
+                                  }}
+                                />
+                              ) : (
+                                <></>
+                              ),
+                            }}
+                            sx={{
+                              backgroundColor: show ? "#E94D4D80" : "#fff",
+                              borderRadius: "10px",
+                              border: "2px solid rgba(0, 0, 0, 0.25)",
+                            }}
+                          />
                         )
                       )}
                       <TextField

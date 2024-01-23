@@ -10,37 +10,37 @@ const imgs = [
   {
     id: 1,
     name: "fm1",
-    img: "src/assets/fireworks (1) 3.png",
+    img: "src/assets/fireworks(1)3.png",
     ids: "sml",
   },
   {
     id: 2,
     name: "fm2",
-    img: "src/assets/fireworks (1) 1.png",
+    img: "src/assets/fireworks(1)1.png",
     ids: "sml",
   },
   {
     id: 3,
     name: "fm3",
-    img: "src/assets/fireworks 2.png",
+    img: "src/assets/fireworks2.png",
     ids: "sml",
   },
   {
     id: 4,
     name: "fm4",
-    img: "src/assets/fireworks 1.png",
+    img: "src/assets/fireworks1.png",
     ids: "sml",
   },
   {
     id: 5,
     name: "fm5",
-    img: "src/assets/fireworks 3.png",
+    img: "src/assets/fireworks3.png",
     ids: "sml",
   },
   {
     id: 6,
     name: "fm6",
-    img: "src/assets/fireworks (1) 2.png",
+    img: "src/assets/fireworks(1)2.png",
     ids: "sml",
   },
 ];

@@ -1,5 +1,11 @@
 import Kubik from "../../assets/yellow_trophy_cup_winner_success_champion_icon_sign_or_symbol_3d_illustration-removebg-preview 1.png";
 import alChiroq from "../../assets/question 1.png";
+import firework1 from "../../assets/fireworks(1)3.png";
+import firework2 from "../../assets/fireworks(1)1.png";
+import firework3 from "../../assets/fireworks2.png";
+import firework4 from "../../assets/fireworks1.png";
+import firework5 from "../../assets/fireworks3.png";
+import firework6 from "../../assets/fireworks(1)2.png";
 import trues from "../../assets/accept 1.png";
 import falses from "../../assets/wrong 2.png";
 import { Button } from "@mui/material";
@@ -10,37 +16,37 @@ const imgs = [
   {
     id: 1,
     name: "fm1",
-    img: "src/assets/fireworks(1)3.png",
+    img: firework1,
     ids: "sml",
   },
   {
     id: 2,
     name: "fm2",
-    img: "src/assets/fireworks(1)1.png",
+    img: firework2,
     ids: "sml",
   },
   {
     id: 3,
     name: "fm3",
-    img: "src/assets/fireworks2.png",
+    img: firework3,
     ids: "sml",
   },
   {
     id: 4,
     name: "fm4",
-    img: "src/assets/fireworks1.png",
+    img: firework4,
     ids: "sml",
   },
   {
     id: 5,
     name: "fm5",
-    img: "src/assets/fireworks3.png",
+    img: firework5,
     ids: "sml",
   },
   {
     id: 6,
     name: "fm6",
-    img: "src/assets/fireworks(1)2.png",
+    img: firework6,
     ids: "sml",
   },
 ];

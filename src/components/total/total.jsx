@@ -122,14 +122,20 @@ const Result = ({ data, answers }) => {
           <div className=""></div>
         ) : (
           <>
-            {imgs.map((image) => (
+            {/* {imgs.map((image) => (
               <img
                 key={image.id}
                 src={image.img}
                 className={image.name}
                 id={image.ids}
               />
-            ))}
+            ))} */}
+            <img src={firework1} className="fm1" id="sml" />
+            <img src={firework2} className="fm2" id="sml" />
+            <img src={firework3} className="fm3" id="sml" />
+            <img src={firework4} className="fm4" id="sml" />
+            <img src={firework5} className="fm5" id="sml" />
+            <img src={firework6} className="fm6" id="sml" />
           </>
         )}
       </div>

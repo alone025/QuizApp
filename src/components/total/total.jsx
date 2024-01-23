@@ -12,45 +12,6 @@ import { Button } from "@mui/material";
 
 import "./total.scss";
 
-const imgs = [
-  {
-    id: 1,
-    name: "fm1",
-    img: firework1,
-    ids: "sml",
-  },
-  {
-    id: 2,
-    name: "fm2",
-    img: firework2,
-    ids: "sml",
-  },
-  {
-    id: 3,
-    name: "fm3",
-    img: firework3,
-    ids: "sml",
-  },
-  {
-    id: 4,
-    name: "fm4",
-    img: firework4,
-    ids: "sml",
-  },
-  {
-    id: 5,
-    name: "fm5",
-    img: firework5,
-    ids: "sml",
-  },
-  {
-    id: 6,
-    name: "fm6",
-    img: firework6,
-    ids: "sml",
-  },
-];
-
 const Result = ({ data, answers }) => {
   const homeNavigate = () => {
     window.location.href = "/";
@@ -122,14 +83,6 @@ const Result = ({ data, answers }) => {
           <div className=""></div>
         ) : (
           <>
-            {/* {imgs.map((image) => (
-              <img
-                key={image.id}
-                src={image.img}
-                className={image.name}
-                id={image.ids}
-              />
-            ))} */}
             <img src={firework1} className="fm1" id="sml" />
             <img src={firework2} className="fm2" id="sml" />
             <img src={firework3} className="fm3" id="sml" />

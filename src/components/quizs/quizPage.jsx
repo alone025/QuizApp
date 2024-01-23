@@ -16,13 +16,6 @@ import Result from "../total/total";
 import InputLabel from "@mui/material/InputLabel";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export const shuffle = (arr) => {
-  return arr
-    .map((item) => [Math.random(), item])
-    .sort()
-    .map((item) => item[1]);
-};
-
 const QuizPage = ({ data }) => {
   const tm =
     data.numberOfQuestions == 5
@@ -41,7 +34,6 @@ const QuizPage = ({ data }) => {
   const [userAnswers, setUserAnswers] = useState(0);
   const [have, setHave] = useState(true);
   const [start, setStart] = useState(false);
-  const [sas, setSas] = useState([]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -73,7 +65,6 @@ const QuizPage = ({ data }) => {
   };
 
   const fetchQuestions = async () => {
-    console.log(data);
     try {
       const response = await axios.get("https://opentdb.com/api.php", {
         params: {
@@ -88,16 +79,12 @@ const QuizPage = ({ data }) => {
 
       if (fetchedQuestions.length > 0) {
         setQuestions(fetchedQuestions);
-        console.log("Savollar", fetchedQuestions);
+
         setAccert(true);
-        setSas(fetchedQuestions[0].incorrect_answers);
-        console.log(sas);
       } else {
-        console.error("No questions fetched from the API.");
         setHave(false);
       }
     } catch (error) {
-      console.error("Error fetching questions:", error);
       fetchQuestions();
     }
   };

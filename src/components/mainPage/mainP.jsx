@@ -28,7 +28,6 @@ const MainP = () => {
     };
 
     fetchCategories();
-    console.log(categories);
   }, [!categories]);
 
   const options = [
@@ -116,7 +115,6 @@ const MainP = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   const handleStartQuiz = async () => {
@@ -130,7 +128,6 @@ const MainP = () => {
       return;
     }
     try {
-      console.log("Ishladi");
       setOpen(false);
     } catch (error) {
       console.error("Error starting quiz:", error);
